@@ -31,10 +31,7 @@ jobs:
     - name: Tag release
       run: git tag "1.2.3"
 
-    - name: Switch back to GH Actions
-      run: |
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-
     - name: Push release
       run: |
-        git push
+        REMOTE_REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        git push $REMOTE_REPO HEAD:main
