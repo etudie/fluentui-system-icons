@@ -24,7 +24,7 @@ jobs:
 
     - name: Commit version number change
       run: |
-        git add -A
+#        git add -A
         git commit -m "Release 1.2.3"
         
     - name: Tag release
