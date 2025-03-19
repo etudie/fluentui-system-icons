@@ -1,5 +1,5 @@
 on:
-  workflow_dispatch:
+  push:
 jobs:
   demo_app_authentication:
     runs-on: ubuntu-latest
