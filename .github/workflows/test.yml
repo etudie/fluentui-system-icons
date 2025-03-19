@@ -25,10 +25,10 @@ jobs:
     - name: Commit version number change
       run: |
         git add -A
-        git commit -m "Release $NEW_VERSION"
+        git commit -m "Release 1.2.3"
         
     - name: Tag release
-      run: git tag "$NEW_VERSION"
+      run: git tag "1.2.3"
 
     - name: Switch back to GH Actions
       run: |
