@@ -272,7 +272,7 @@ jobs:
 
     - name: Push release
       run: |
-        git push HEAD:main --follow-tags --tags
+        git push origin HEAD:main --follow-tags --tags
 
   # publish-android-demo:
   #   name: Publish Android demo app
