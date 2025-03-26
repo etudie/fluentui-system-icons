@@ -29,12 +29,6 @@ jobs:
         app-id: ${{ secrets.GH_APP_ID }}
         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
-    - name: Use the token
-      env:
-        GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-      run: |
-        gh api octocat
-
     - uses: actions/checkout@v2
       with:
         token: ${{ steps.generate-token.outputs.token }}

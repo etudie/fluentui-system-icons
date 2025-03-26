@@ -1,0 +1,32 @@
+on:
+  push:
+jobs:
+  demo_app_authentication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Config git credentials
+        run: git config user.email "flubuild@microsoft.com" && git config user.name "Fluent Build System"
+
+      - name: Commit version number change
+        run: |
+          date > generated.txt
+          git add .
+          git commit -m "Release 1.2.3"
+
+      - name: Tag release
+        run: git tag "1.2.3"
+
+      - name: Push release
+        run: |
+          git push HEAD:main --follow-tags --tags
